@@ -16,6 +16,14 @@ func (b BeijingDuck) GetName() string {
 	return b.name
 }
 
+type FakeBeijingDuck struct {
+	name string
+}
+
+func (b FakeBeijingDuck) GetName() string {
+	return b.name
+}
+
 type ShaoxingDuck struct {
 	name string
 }
@@ -24,26 +32,46 @@ func (s ShaoxingDuck) GetName() string {
 	return s.name
 }
 
+type FakeShaoxingDuck struct {
+	name string
+}
+
+func (s FakeShaoxingDuck) GetName() string {
+	return s.name
+}
+
 type DuckFactory interface {
 	ProduceDuck() Duck
 }
 
-type BeijingDuckFactory struct {
-	name string
-}
+type BeijingDuckFactory struct{}
 
-func (s BeijingDuckFactory) ProduceDuck() Duck {
-	return BeijingDuck{
-		name: "BeijingDuck",
+func (s BeijingDuckFactory) ProduceDuck(typ string) Duck {
+	switch typ {
+	case "BeijingDuck":
+		return BeijingDuck{
+			name: "BeijingDuck",
+		}
+	case "ShaoxingDuck":
+		return FakeBeijingDuck{
+			name: "FakeShaoxingDuck",
+		}
 	}
+	return nil
 }
 
-type ShaoxingDuckFactory struct {
-	name string
-}
+type ShaoxingDuckFactory struct{}
 
-func (s ShaoxingDuckFactory) ProduceDuck() Duck {
-	return ShaoxingDuck{
-		name: "ShaoxingDuck",
+func (s ShaoxingDuckFactory) ProduceDuck(typ string) Duck {
+	switch typ {
+	case "ShaoxingDuck":
+		return ShaoxingDuck{
+			name: "ShaoxingDuck",
+		}
+	case "BeijingDuck":
+		return FakeBeijingDuck{
+			name: "FakeBeijingDuck",
+		}
 	}
+	return nil
 }

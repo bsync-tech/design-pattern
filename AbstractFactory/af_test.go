@@ -15,7 +15,8 @@ type MySuite struct{}
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) TestProduceDuck(c *C) {
-	BeijingDuck := FactoryProduceDuck("BeijingDuck")
+	bf := new(BeijingDuckFactory)
+	bf.CookWithBeer()
 	c.Assert(BeijingDuck == nil, Equals, false)
 	c.Logf("BeijingDuck's name is %s", BeijingDuck.GetName())
 	ShaoxingDuck := FactoryProduceDuck("ShaoxingDuck")
