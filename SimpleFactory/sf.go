@@ -1,8 +1,8 @@
 package sf
 
-// In this pattern, Add Duck type, you need:
-// 1. Add lines code in FactoryProduceDuck.
-// 2. Add new type Duck in this file.
+// In this pattern, Add Duck type need, you need
+// 1. Add lines code in FactoryProduceDuck
+// 2. Add new type Duck in this file
 
 type Duck interface {
 	GetName() string
