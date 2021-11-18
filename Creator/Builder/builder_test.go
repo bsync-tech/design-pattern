@@ -1,4 +1,4 @@
-package prototype
+package builder
 
 import (
 	"testing"
@@ -14,8 +14,9 @@ type MySuite struct{}
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) TestGetInstance(c *C) {
-	d1 := GetInstance()
-	d2 := GetInstance()
-	c.Assert(d1 == d2, Equals, true)
-	c.Assert(d1.GetName() == d2.GetName(), Equals, true)
+	director := new(Director)
+	builder := new(HighPerformanceComputerBuilder)
+	director.SetBuilder(builder)
+	computer := director.Build()
+	c.Assert(computer.String() == "amd 3995wx ps-2 logitech", Equals, true)
 }

@@ -1,4 +1,4 @@
-package prototype
+package facade
 
 import (
 	"testing"
@@ -14,8 +14,6 @@ type MySuite struct{}
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) TestGetInstance(c *C) {
-	d1 := GetInstance()
-	d2 := GetInstance()
-	c.Assert(d1 == d2, Equals, true)
-	c.Assert(d1.GetName() == d2.GetName(), Equals, true)
+	d1 := &ComputerFacade{Cpu: new(Cpu), Memory: new(Memory), Disk: new(Disk)}
+	c.Assert(d1.Run() == "cpu load instructions,memory load data,disk read,cpu execute", Equals, true)
 }
