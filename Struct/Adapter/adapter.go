@@ -1,5 +1,7 @@
 package adapter
 
+import "fmt"
+
 type GeneralEat interface {
 	Do() string
 }
@@ -21,11 +23,12 @@ type EatAdapter struct {
 	adaptee *Eat
 }
 
-func (adapter *EatAdapter) New(eat *Eat) {
-	adapter.name = "eat adapter"
+func (adapter *EatAdapter) New(eat *Eat) *EatAdapter {
+	adapter.name = "'s adapter"
 	adapter.adaptee = eat
+	return adapter
 }
 
 func (adapter *EatAdapter) Do() string {
-	return adapter.adaptee.Do()
+	return fmt.Sprintf("%s%s", adapter.adaptee.Do(), adapter.name)
 }

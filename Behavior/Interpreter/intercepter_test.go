@@ -1,7 +1,6 @@
-package adapter
+package intercepter
 
 import (
-	"fmt"
 	"testing"
 
 	. "gopkg.in/check.v1"
@@ -15,10 +14,10 @@ type MySuite struct{}
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) TestGetInstance(c *C) {
-	d1 := &Eat{name: "eat"}
-	c.Assert(d1.Do() == "eat", Equals, true)
-	d2 := new(EatAdapter).New(d1)
-
-	fmt.Println("hi", d2.Do())
-	c.Assert(d2.Do() == "eat's adapter", Equals, true)
+	d1 := &Context{}
+	d1.Init()
+	r1 := d1.Interpret("Beijing Women")
+	c.Assert(r1 == "Free ride", Equals, true)
+	r2 := d1.Interpret("Beijing Man")
+	c.Assert(r2 == "Pay please", Equals, true)
 }
