@@ -1,4 +1,4 @@
-package prototype
+package intercepter
 
 import (
 	"testing"
@@ -14,8 +14,10 @@ type MySuite struct{}
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) TestGetInstance(c *C) {
-	d1 := GetInstance()
-	d2 := GetInstance()
-	c.Assert(d1 == d2, Equals, true)
-	c.Assert(d1.GetName() == d2.GetName(), Equals, true)
+	d1 := &Context{}
+	d1.Init()
+	r1 := d1.Interpret("Beijing Women")
+	c.Assert(r1 == "Free ride", Equals, true)
+	r2 := d1.Interpret("Beijing Man")
+	c.Assert(r2 == "Pay please", Equals, true)
 }

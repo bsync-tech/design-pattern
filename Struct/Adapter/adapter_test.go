@@ -1,6 +1,7 @@
 package adapter
 
 import (
+	"fmt"
 	"testing"
 
 	. "gopkg.in/check.v1"
@@ -16,6 +17,8 @@ var _ = Suite(&MySuite{})
 func (s *MySuite) TestGetInstance(c *C) {
 	d1 := &Eat{name: "eat"}
 	c.Assert(d1.Do() == "eat", Equals, true)
-	d2 := EatAdapter{adaptee: d1}
-	c.Assert(d2.Do() == "eat adapter", Equals, true)
+	d2 := new(EatAdapter).New(d1)
+
+	fmt.Println("hi", d2.Do())
+	c.Assert(d2.Do() == "eat's adapter", Equals, true)
 }
