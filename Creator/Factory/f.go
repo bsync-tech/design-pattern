@@ -16,27 +16,11 @@ func (b BeijingDuck) GetName() string {
 	return b.name
 }
 
-type FakeBeijingDuck struct {
-	name string
-}
-
-func (b FakeBeijingDuck) GetName() string {
-	return b.name
-}
-
 type ShaoxingDuck struct {
 	name string
 }
 
 func (s ShaoxingDuck) GetName() string {
-	return s.name
-}
-
-type FakeShaoxingDuck struct {
-	name string
-}
-
-func (s FakeShaoxingDuck) GetName() string {
 	return s.name
 }
 
