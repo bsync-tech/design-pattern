@@ -15,10 +15,10 @@ type MySuite struct{}
 var _ = Suite(&MySuite{})
 
 func (s *MySuite) TestGetInstance(c *C) {
-	d1 := &Eat{name: "eat"}
-	c.Assert(d1.Do() == "eat", Equals, true)
-	d2 := new(EatAdapter).New(d1)
+	d1 := &Charge220{name: "220v"}
+	c.Assert(d1.Charge() == "220v", Equals, true)
+	d2 := new(ChargeAdapter).New(d1)
 
-	fmt.Println("hi", d2.Do())
-	c.Assert(d2.Do() == "eat's adapter", Equals, true)
+	fmt.Println("hi", d2.Charge())
+	c.Assert(d2.Charge() == "220v's adapter", Equals, true)
 }

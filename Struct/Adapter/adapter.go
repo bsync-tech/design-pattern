@@ -2,33 +2,29 @@ package adapter
 
 import "fmt"
 
-type GeneralEat interface {
-	Do() string
+type ICharge interface {
+	Supply() string
 }
 
-type Eat struct {
+type Charge220 struct {
 	name string
 }
 
-func (eat *Eat) New(name string) {
-	eat.name = name
+func (c *Charge220) Charge() string {
+	return c.name
 }
 
-func (e *Eat) Do() string {
-	return e.name
-}
-
-type EatAdapter struct {
+type ChargeAdapter struct {
 	name    string
-	adaptee *Eat
+	adaptee *Charge220
 }
 
-func (adapter *EatAdapter) New(eat *Eat) *EatAdapter {
-	adapter.name = "'s adapter"
-	adapter.adaptee = eat
-	return adapter
+func (a *ChargeAdapter) New(e *Charge220) *ChargeAdapter {
+	a.name = "'s adapter"
+	a.adaptee = e
+	return a
 }
 
-func (adapter *EatAdapter) Do() string {
-	return fmt.Sprintf("%s%s", adapter.adaptee.Do(), adapter.name)
+func (a *ChargeAdapter) Charge() string {
+	return fmt.Sprintf("%s%s", a.adaptee.Charge(), a.name)
 }
