@@ -24,7 +24,7 @@ func (s ShaoxingDuck) GetName() string {
 	return s.name
 }
 
-type DuckFactory interface {
+type IDuckFactory interface {
 	ProduceDuck() Duck
 }
 
